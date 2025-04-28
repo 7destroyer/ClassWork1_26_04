@@ -70,10 +70,13 @@ public:
 
     void swap(size_t index1, size_t index2) {
         if (index1 < currentSize && index2 < currentSize) {
-            swap(data[index1], data[index2]);
+            T temp = data[index1];
+            data[index1] = data[index2];
+            data[index2] = temp;
         }
         else {
             cout << "Один или оба индекса за пределами нашего диапозона!" << endl;
+            return;
         }
     }
 
@@ -90,7 +93,7 @@ public:
     }
 };
 
-template <typename T>
+template <class T>
 void swap(T& a, T& b) {
     T temp = a;
     a = b;
@@ -106,6 +109,7 @@ int main()
     intVector.add(1);
     intVector.add(2);
     intVector.add(3);
+    cout << "Содержимое контейнера: ";
     intVector.print(); // Вывод: Содержимое контейнера: 1 2 3
 
     if (intVector.size() > 1) {
@@ -140,7 +144,7 @@ int main()
     // Пример использования шаблонной функции swap
     int x = 5, y = 10;
     cout << "До обмена: x = " << x << ", y = " << y << endl; // Вывод: До обмена: x = 5, y = 10
-    swap(x, y);
+    ::swap(x, y);
     cout << "После обмена: x = " << x << ", y = " << y << endl; // Вывод: После обмена: x = 10, y = 5
 
     string str1 = "First", str2 = "Second";
